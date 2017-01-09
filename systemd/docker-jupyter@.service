@@ -1,0 +1,12 @@
+[Unit]
+Description=Jupyter Notebook - Interactive Computing for %i
+Documentation=http://jupyter.org
+After=docker.service
+
+[Service]
+Restart=always
+EnvironmentFile=-/etc/default/docker-jupyter@%i
+ExecStart=/usr/bin/docker run --rm --name jupyter_%i -h %H_jupyter_%i -p 8888:8888 $VOLUMES nventiveux/docker-jupyter:1.0.0
+
+[Install]
+WantedBy=multi-user.target

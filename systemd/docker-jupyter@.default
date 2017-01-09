@@ -1,0 +1,5 @@
+# Container options for docker-jupyter.
+#
+# Provide notebooks to mount in /notebooks from host.
+# Refer to '-v' option of 'docker run' to know the syntax.
+#VOLUMES="-v ~/GIT/notebooks/tivoli_notebook:/notebooks/tivoli -v ~/GIT/notebooks/tiger_plm:/notebooks/tiger"
