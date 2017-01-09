@@ -12,7 +12,7 @@ RUN set -x \
   && ln -s /usr/include/locale.h /usr/include/xlocale.h \
   && pip3 install --no-cache-dir --upgrade pip \
   && pip3 install --no-cache-dir jupyter==1.0.0 \
-  && pip3 install --no-cache-dir widgetsnbextension \
+  && pip3 install --no-cache-dir ipywidgets \
   && apk del .builddeps;
 
 COPY ./docker-entrypoint.sh /
@@ -26,8 +26,15 @@ VOLUME ["/notebooks"]
 
 USER jupyter
 
+# Add a notebook profile.
+RUN mkdir -p -m 700 /home/jupyter/.jupyter/ \
+  && echo "c.NotebookApp.ip = '*'" >> /home/jupyter/.jupyter/jupyter_notebook_config.py
+
+RUN set -x \
+  && jupyter nbextension enable --py widgetsnbextension;
+
 EXPOSE 8888
 WORKDIR /notebooks
 
 ENTRYPOINT ["/sbin/tini", "--", "/docker-entrypoint.sh"]
-CMD ["notebook", "--no-browser", "--ip=0.0.0.0"]
+CMD ["notebook", "--no-browser"]
