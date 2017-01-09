@@ -7,7 +7,7 @@ LABEL license="MIT"
 LABEL description="Docker image for Jupyter Notebook installation."
 
 RUN set -x \
-  && apk add --no-cache python3 ca-certificates build-base \
+  && apk add --no-cache --update tini python3 ca-certificates build-base \
   && apk add --no-cache --virtual .builddeps python3-dev libpng-dev freetype-dev \
   && ln -s /usr/include/locale.h /usr/include/xlocale.h \
   && pip3 install --no-cache-dir --upgrade pip \
@@ -29,5 +29,5 @@ USER jupyter
 EXPOSE 8888
 WORKDIR /notebooks
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "/docker-entrypoint.sh"]
 CMD ["notebook", "--no-browser", "--ip=0.0.0.0"]
