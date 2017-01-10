@@ -20,6 +20,8 @@ COPY ./docker-entrypoint.sh /
 
 RUN addgroup -S -g 500 jupyter \
   && adduser -S -u 500 -D -G jupyter jupyter \
+  && mkdir -p -m 700 /notebooks \
+  && chown jupyter:jupyter /notebooks \
   && chmod +x /docker-entrypoint.sh \
   && chown jupyter:jupyter /docker-entrypoint.sh;
 
