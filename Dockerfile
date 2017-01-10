@@ -54,13 +54,11 @@ USER jupyter
 
 # Add a notebook profile.
 RUN mkdir -p -m 700 /home/jupyter/.jupyter/ \
-  && echo "c.NotebookApp.ip = '*'" >> /home/jupyter/.jupyter/jupyter_notebook_config.py
-
-RUN set -x \
-  && jupyter nbextension enable --py widgetsnbextension;
+  && echo "c.NotebookApp.ip = '*'" > ~/.jupyter/jupyter_notebook_config.py \
+  && echo "c.NotebookApp.open_browser = False" >> ~/.jupyter/jupyter_notebook_config.py
 
 EXPOSE 8888
 WORKDIR /notebooks
 
 ENTRYPOINT ["/sbin/tini", "--", "/docker-entrypoint.sh"]
-CMD ["notebook", "--no-browser"]
+CMD ["notebook"]
