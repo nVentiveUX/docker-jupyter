@@ -1,5 +1,6 @@
 #!/bin/sh
-
 set -e
 
-exec jupyter $@
+HOME=/tmp
+
+exec jupyter "$@" --ip='*' --no-browser
