@@ -6,7 +6,7 @@ LABEL authors="Yves ANDOLFATTO, Vincent BESANCON"
 LABEL license="MIT"
 LABEL description="Docker image for Jupyter Notebook installation."
 
-RUN set -ex \
+RUN set -x \
   && apk add --no-cache --update tini python3 ca-certificates build-base py-psutil \
   && apk add --no-cache --update --virtual .builddeps python3-dev libpng-dev freetype-dev \
   && ln -s /usr/include/locale.h /usr/include/xlocale.h \
@@ -16,13 +16,13 @@ RUN set -ex \
   && pip3 install --no-cache-dir jupyter-contrib-nbextensions==0.2.* \
   && apk del .builddeps;
 
-RUN set -ex \
+RUN set -x \
   && addgroup -S -g 500 jupyter \
   && adduser -S -u 500 -D -G jupyter jupyter \
   && mkdir -m 755 /notebooks \
   && chown jupyter:jupyter /notebooks;
 
-RUN set -ex \
+RUN set -x \
   && jupyter contrib nbextension install --system \
   && jupyter nbextensions_configurator enable --system \
   && jupyter nbextension enable addbefore/main --system \
