@@ -10,7 +10,7 @@ Clone this repository and build the Docker image.
 $ git clone git@ssh.github.com:nVentiveUX/docker-jupyter.git
 $ cd docker-jupyter
 # With a proxy, add "--build-arg http_proxy=http://$(hostname):3128/ --build-arg https_proxy=http://$(hostname):3128/"
-$ docker build --force-rm -t nventiveux/docker-jupyter:1.0.0 .
+$ docker build --force-rm -t nventiveux/docker-jupyter -t nventiveux/docker-jupyter:1.0.0 .
 ```
 
 Run the container
