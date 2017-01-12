@@ -40,7 +40,6 @@ RUN set -ex \
   && jupyter nbextension enable notify/notify --system \
   && jupyter nbextension enable printview/main --system \
   && jupyter nbextension enable rubberband/main --system \
-  && jupyter nbextension enable ruler/main --system \
   && jupyter nbextension enable scroll_down/main --system \
   && jupyter nbextension enable search-replace/main --system \
   && jupyter nbextension enable table_beautifier/main --system \
