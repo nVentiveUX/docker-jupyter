@@ -13,6 +13,21 @@ $ cd docker-jupyter
 $ docker build --force-rm -t nventiveux/docker-jupyter -t nventiveux/docker-jupyter:1.0.0 .
 ```
 
+Test the container
+
+```shell
+$ docker run --rm \
+  --name jupyter_$USER \
+  --user 1000:1000 \
+  -h $(hostname)_jupyter_$USER \
+  -p 8888:8888 \
+  -v $SSH_AUTH_SOCK:/ssh-agent \
+  -e SSH_AUTH_SOCK=/ssh-agent \
+  -v ~/.ssh:/tmp/.ssh \
+  -v /etc/passwd:/etc/passwd:ro \
+  -v $(pwd):/notebooks nventiveux/docker-jupyter-tigerplm:latest
+```
+
 Run the container
 
 ```shell
