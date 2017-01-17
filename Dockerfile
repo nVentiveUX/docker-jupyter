@@ -7,7 +7,7 @@ LABEL license="MIT"
 LABEL description="Docker image for Jupyter Notebook installation."
 
 RUN set -x \
-  && apk add --no-cache --update tini python3 ca-certificates build-base py-psutil \
+  && apk add --no-cache --update tini python3 ca-certificates build-base py-psutil libpng freetype \
   && apk add --no-cache --update --virtual .builddeps python3-dev libpng-dev freetype-dev \
   && ln -s /usr/include/locale.h /usr/include/xlocale.h \
   && pip3 install --no-cache-dir --upgrade pip \
