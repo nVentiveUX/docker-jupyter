@@ -14,6 +14,7 @@ RUN set -x \
   && pip3 install --no-cache-dir jupyter==1.0.* \
   && pip3 install --no-cache-dir jupyter-nbextensions-configurator==0.2.* \
   && pip3 install --no-cache-dir jupyter-contrib-nbextensions==0.2.* \
+  && pip3 install --no-cache-dir ipywidgets \
   && apk del .builddeps;
 
 RUN set -x \
@@ -24,6 +25,7 @@ RUN set -x \
 
 RUN set -x \
   && jupyter contrib nbextension install --system \
+  && jupyter nbextension enable --py --sys-prefix widgetsnbextension \
   && jupyter nbextensions_configurator enable --system \
   && jupyter nbextension enable addbefore/main --system \
   && jupyter nbextension enable autoscroll/main --system \
