@@ -36,7 +36,6 @@ RUN set -x \
   && jupyter nbextension enable highlighter/highlighter --system \
   && jupyter nbextension enable init_cell/main --system \
   && jupyter nbextension enable move_selected_cells/main --system \
-  && jupyter nbextension enable navigation-hotkeys/main --system \
   && jupyter nbextension enable notify/notify --system \
   && jupyter nbextension enable printview/main --system \
   && jupyter nbextension enable rubberband/main --system \
