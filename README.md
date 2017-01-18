@@ -18,7 +18,7 @@ Test the container
 ```shell
 $ docker run --rm \
   --name jupyter_$USER \
-  --user 1000:1000 \
+  --user $(id -u):$(id -g) \
   -h $(hostname)_jupyter_$USER \
   -p 8888:8888 \
   -v $SSH_AUTH_SOCK:/ssh-agent \
